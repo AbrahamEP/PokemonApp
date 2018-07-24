@@ -10,4 +10,5 @@ pod 'MBProgressHUD', '~> 1.1.0'
 pod 'Alamofire'
 pod 'IQKeyboardManagerSwift'
 pod 'SwiftyJSON'
+pod 'SDWebImage'
 end
