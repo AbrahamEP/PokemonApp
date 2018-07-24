@@ -25,13 +25,35 @@ class API {
         self.networking = Networking()
     }
     
-    func getPokemonList(for url: String = EndpointsURLs.getPokemonList ,completion: @escaping (_ pokemons: [Pokemon]?, _ json: JSON?) -> Void) {
+    func getPokemonList(for url: String = EndpointsURLs.getPokemonList ,completion: @escaping (_ pokemons: [Pokemon]?, _ json: JSON?, _ response: NetworkResponse) -> Void) {
         
         self.networking.networkingAlamo(url: url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil) { (response, json) in
             
+            guard let currentJson = json else {
+                DispatchQueue.main.async {
+                    completion(nil, nil, response)
+                }
+                return
+            }
             
+            let resultsJson = currentJson["results"].arrayValue
+            var pokemons: [Pokemon] = []
+            resultsJson.forEach({ (pokemonJson) in
+                let newPokemon = Pokemon(json: pokemonJson)
+                pokemons.append(newPokemon)
+            })
+            
+            DispatchQueue.main.async {
+                completion(pokemons, json, response)
+            }
             
         }
+        
+    }
+    
+    func login(username: String, password: String, completion: @escaping () -> Void) {
+        
+        
         
     }
     

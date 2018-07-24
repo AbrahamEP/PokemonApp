@@ -23,6 +23,7 @@ struct Pokemon {
             return currentID
         }
     }
+    
     var imageUrl: String {
         get{
             return "http://pokeapi.co/media/sprites/pokemon/\(self.id).png"
