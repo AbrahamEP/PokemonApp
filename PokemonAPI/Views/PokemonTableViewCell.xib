@@ -72,8 +72,10 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="idLabel" destination="L6W-ee-DE5" id="Zt4-N5-fHI"/>
+                <outlet property="mainContentView" destination="IaR-os-DVx" id="Y7V-E2-2Km"/>
                 <outlet property="nameLabel" destination="EQN-Ob-sp1" id="xuB-cX-0gV"/>
                 <outlet property="pokemonImageView" destination="10k-tq-Qia" id="Dej-yL-v5C"/>
+                <outlet property="shadowView" destination="H5k-u3-zCM" id="wyP-zr-qtC"/>
             </connections>
         </tableViewCell>
     </objects>

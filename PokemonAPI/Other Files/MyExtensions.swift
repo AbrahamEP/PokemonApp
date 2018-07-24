@@ -28,9 +28,7 @@ extension UIViewController{
     func resignCurrentFirstResponder() {
         UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil)
     }
-    func navigate(_ navigation: DeliveryNavigation) {
-        navigate(navigation as Navigation)
-    }
+    
     
     /**
      Function for setting the back button item of a navigation bar, to blank.
@@ -70,99 +68,7 @@ extension UIViewController{
         })
     }
     
-    func showSpinnerIndicator() -> UIActivityIndicatorView {
-        
-        UIApplication.shared.beginIgnoringInteractionEvents()
-        
-        let indicator = UIActivityIndicatorView()
-        
-        indicator.frame = self.view.frame
-        indicator.center = self.view.center
-        indicator.backgroundColor = UIColor.black
-        indicator.activityIndicatorViewStyle = .gray
-        indicator.hidesWhenStopped = true
-        indicator.startAnimating()
-        
-        self.view.addSubview(indicator)
-        
-        return indicator
-    }
     
-    func hideSpinnerIndicator(indicator: UIActivityIndicatorView){
-        indicator.stopAnimating()
-        indicator.isHidden = true
-        
-        UIApplication.shared.endIgnoringInteractionEvents()
-        
-    }
-    
-    func transitionToTutorialPageViewController() {
-        
-        if let window = self.view.window {
-            UIView.transition(with: window, duration: 0.3, options: UIViewAnimationOptions.transitionFlipFromLeft, animations: {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                
-                window.rootViewController = storyboard.instantiateViewController(withIdentifier: "PageViewController")
-            }, completion: nil)
-        }
-        
-    }
-    
-    func transitionToMainViewController(animation: UIViewAnimationOptions = .transitionFlipFromLeft) {
-        
-        guard let window = self.view.window else {return}
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let main = storyboard.instantiateViewController(withIdentifier: "mainViewController")
-        guard let mainvc = window.rootViewController, mainvc != main else {return}
-        UIView.transition(with: window, duration: 0.3, options: animation, animations: {
-            window.rootViewController = main
-        }) { _ in
-            defaults.statusLogin = true
-        }
-    }
-    
-    func transitionToLoginViewController() {
-        
-        guard let window = UIApplication.shared.windows.last else {return}
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-        guard let loginViewController = window.rootViewController, loginViewController != loginVC else {return}
-        UIView.transition(with: window, duration: 0.3, options: UIViewAnimationOptions.transitionFlipFromLeft, animations: {
-            
-            window.rootViewController = loginVC
-        }) { _ in
-            defaults.statusLogin = false
-        }
-    }
-    
-    func setNavBarWith(title: String, showCarButton: Bool, showMenuButton: Bool){
-        
-        let carBarButtonItem = CarBarButtonItem()
-        carBarButtonItem.viewController = self
-        
-        let menuBarButtonItem = MenuBarButtonItem()
-        menuBarButtonItem.viewController = self
-        
-        
-        if showMenuButton && showCarButton {
-            self.navigationItem.leftBarButtonItems = [menuBarButtonItem, carBarButtonItem]
-        } else if showMenuButton && !showCarButton {
-            self.navigationItem.leftBarButtonItem = menuBarButtonItem
-        } else if !showMenuButton && showCarButton {
-            self.navigationItem.leftBarButtonItem = carBarButtonItem
-        }
-        
-        
-        let titleBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: self, action: nil)
-        titleBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.DeliveryFonts.gothamMediumWith(size: 19)], for: .normal)
-        titleBarButtonItem.isEnabled = false
-        self.navigationController?.navigationBar.addBorder(side: .Bottom, color: UIColor.Palette.endGradientColor, width: 3)
-        self.navigationController?.navigationBar.tintColor = UIColor.black
-        
-        self.navigationItem.rightBarButtonItem = titleBarButtonItem
-        
-        
-    }
     
     /**
      Creates and presents an alert on the ViewController is called.
@@ -303,41 +209,6 @@ extension UITextField{
     
 }
 
-
-//MARK: - Font
-
-extension UIFont {
-    
-    struct DeliveryFonts {
-        
-        static func gothamBookWith(size: CGFloat = 12) -> UIFont {
-            
-            return UIFont(name: "Gotham-Book", size: size)!
-        }
-        
-        static func gothamMediumWith(size: CGFloat = 12) -> UIFont {
-            return UIFont(name: "Gotham-Medium", size: size)!
-        }
-        
-        static func gothamBoldWith(size: CGFloat = 12) -> UIFont {
-            return UIFont(name: "Gotham-bold", size: size)!
-        }
-    }
-}
-
-//MARK: - Color Palette
-
-extension UIColor {
-    
-    struct Palette {
-        
-        static let whiteBackgroundLoginButton = UIColor(white: 1.0, alpha: 0.5)
-        static let initialGradientColor = UIColor(red: 1.0, green: 165.0 / 255.0, blue: 70.0 / 255.0, alpha: 1.0)
-        static let endGradientColor = UIColor(red: 249.0 / 255.0, green: 43.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0)
-    }
-    
-}
-
 //MARK: - UIImage
 
 public extension UIImage {
@@ -395,14 +266,6 @@ public enum UIButtonBorderSide {
     case Top, Bottom, Left, Right, All
 }
 
-extension UIButton {
-    
-    func loginAppeareance() {
-        self.backgroundColor = UIColor.Palette.whiteBackgroundLoginButton
-        self.roundBordersWith(radius: 8)
-    }
-    
-}
 
 //MARK: - UIView
 
@@ -555,7 +418,7 @@ extension UIView {
     }
     
     
-    func applyGradient(colours: [UIColor] = [UIColor.Palette.initialGradientColor, UIColor.Palette.endGradientColor], direction: GradientDirection = .topToBottom) -> Void {
+    func applyGradient(colours: [UIColor], direction: GradientDirection = .topToBottom) -> Void {
         self.applyGradient(colours: colours, locations: nil, direction: direction)
     }
     

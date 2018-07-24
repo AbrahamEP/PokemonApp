@@ -11,6 +11,7 @@
 		A36B75D42106E9EE00DE4EC6 /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B75D22106E9EE00DE4EC6 /* PokemonTableViewCell.swift */; };
 		A36B75D52106E9EE00DE4EC6 /* PokemonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36B75D32106E9EE00DE4EC6 /* PokemonTableViewCell.xib */; };
 		A36B75D82106EAFC00DE4EC6 /* MyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B75D72106EAFC00DE4EC6 /* MyExtensions.swift */; };
+		A36B75DA2106EC6400DE4EC6 /* HelpTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B75D92106EC6300DE4EC6 /* HelpTools.swift */; };
 		A38C0F692106C7D40041E104 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38C0F682106C7D40041E104 /* AppDelegate.swift */; };
 		A38C0F6E2106C7D40041E104 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38C0F6C2106C7D40041E104 /* Main.storyboard */; };
 		A38C0F702106C7D70041E104 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A38C0F6F2106C7D70041E104 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		A36B75D22106E9EE00DE4EC6 /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
 		A36B75D32106E9EE00DE4EC6 /* PokemonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonTableViewCell.xib; sourceTree = "<group>"; };
 		A36B75D72106EAFC00DE4EC6 /* MyExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyExtensions.swift; sourceTree = "<group>"; };
+		A36B75D92106EC6300DE4EC6 /* HelpTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTools.swift; sourceTree = "<group>"; };
 		A38C0F652106C7D40041E104 /* PokemonAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38C0F682106C7D40041E104 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A38C0F6D2106C7D40041E104 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		A38C0F862106E7570041E104 /* Other Files */ = {
 			isa = PBXGroup;
 			children = (
+				A36B75D92106EC6300DE4EC6 /* HelpTools.swift */,
 				A36B75D72106EAFC00DE4EC6 /* MyExtensions.swift */,
 				A38C0F682106C7D40041E104 /* AppDelegate.swift */,
 			);
@@ -297,6 +300,7 @@
 				A38C0F7B2106C8A20041E104 /* API.swift in Sources */,
 				A36B75D82106EAFC00DE4EC6 /* MyExtensions.swift in Sources */,
 				A38C0F692106C7D40041E104 /* AppDelegate.swift in Sources */,
+				A36B75DA2106EC6400DE4EC6 /* HelpTools.swift in Sources */,
 				A38C0F822106DBB90041E104 /* Pokemon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
