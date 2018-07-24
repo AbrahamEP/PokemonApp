@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9592557A74F50DB9865F4734 /* Pods_PokemonAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF7C69B85AABFE9BB233346 /* Pods_PokemonAPI.framework */; };
+		A36B75D42106E9EE00DE4EC6 /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B75D22106E9EE00DE4EC6 /* PokemonTableViewCell.swift */; };
+		A36B75D52106E9EE00DE4EC6 /* PokemonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36B75D32106E9EE00DE4EC6 /* PokemonTableViewCell.xib */; };
+		A36B75D82106EAFC00DE4EC6 /* MyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B75D72106EAFC00DE4EC6 /* MyExtensions.swift */; };
 		A38C0F692106C7D40041E104 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38C0F682106C7D40041E104 /* AppDelegate.swift */; };
 		A38C0F6E2106C7D40041E104 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38C0F6C2106C7D40041E104 /* Main.storyboard */; };
 		A38C0F702106C7D70041E104 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A38C0F6F2106C7D70041E104 /* Assets.xcassets */; };
@@ -22,6 +25,9 @@
 
 /* Begin PBXFileReference section */
 		1F2EFB21558E46A5D42A82DB /* Pods-PokemonAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PokemonAPI/Pods-PokemonAPI.debug.xcconfig"; sourceTree = "<group>"; };
+		A36B75D22106E9EE00DE4EC6 /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
+		A36B75D32106E9EE00DE4EC6 /* PokemonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonTableViewCell.xib; sourceTree = "<group>"; };
+		A36B75D72106EAFC00DE4EC6 /* MyExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyExtensions.swift; sourceTree = "<group>"; };
 		A38C0F652106C7D40041E104 /* PokemonAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38C0F682106C7D40041E104 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A38C0F6D2106C7D40041E104 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +64,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A36B75D62106E9F700DE4EC6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A36B75D22106E9EE00DE4EC6 /* PokemonTableViewCell.swift */,
+				A36B75D32106E9EE00DE4EC6 /* PokemonTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A38C0F5C2106C7D40041E104 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +94,7 @@
 		A38C0F672106C7D40041E104 /* PokemonAPI */ = {
 			isa = PBXGroup;
 			children = (
+				A36B75D62106E9F700DE4EC6 /* Views */,
 				A38C0F742106C7D70041E104 /* Info.plist */,
 				A38C0F862106E7570041E104 /* Other Files */,
 				A38C0F852106E7410041E104 /* Storyboards */,
@@ -121,6 +137,7 @@
 		A38C0F862106E7570041E104 /* Other Files */ = {
 			isa = PBXGroup;
 			children = (
+				A36B75D72106EAFC00DE4EC6 /* MyExtensions.swift */,
 				A38C0F682106C7D40041E104 /* AppDelegate.swift */,
 			);
 			path = "Other Files";
@@ -197,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A38C0F732106C7D70041E104 /* LaunchScreen.storyboard in Resources */,
+				A36B75D52106E9EE00DE4EC6 /* PokemonTableViewCell.xib in Resources */,
 				A38C0F702106C7D70041E104 /* Assets.xcassets in Resources */,
 				A38C0F6E2106C7D40041E104 /* Main.storyboard in Resources */,
 			);
@@ -272,10 +290,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A38C0F882106E7790041E104 /* LoginViewController.swift in Sources */,
+				A36B75D42106E9EE00DE4EC6 /* PokemonTableViewCell.swift in Sources */,
 				A38C0F7F2106D02E0041E104 /* Networking.swift in Sources */,
 				A38C0F7D2106CF4D0041E104 /* NetworkResponse.swift in Sources */,
 				A38C0F8A2106E78B0041E104 /* PokemonListViewController.swift in Sources */,
 				A38C0F7B2106C8A20041E104 /* API.swift in Sources */,
+				A36B75D82106EAFC00DE4EC6 /* MyExtensions.swift in Sources */,
 				A38C0F692106C7D40041E104 /* AppDelegate.swift in Sources */,
 				A38C0F822106DBB90041E104 /* Pokemon.swift in Sources */,
 			);

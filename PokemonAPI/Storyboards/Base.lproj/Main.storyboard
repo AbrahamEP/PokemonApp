@@ -47,8 +47,16 @@
                         <viewLayoutGuide key="safeArea" id="EJD-Mp-dK5"/>
                     </view>
                     <navigationItem key="navigationItem" id="UeR-CC-fyM">
-                        <barButtonItem key="rightBarButtonItem" image="LogoutIcon" id="c7k-zI-RrE"/>
+                        <barButtonItem key="rightBarButtonItem" image="LogoutIcon" id="c7k-zI-RrE">
+                            <connections>
+                                <action selector="logoutBarButtonAction:" destination="TTk-jm-uqr" id="Bdj-1C-UJ3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="logoutBarButtonItem" destination="c7k-zI-RrE" id="ZZG-kP-BNT"/>
+                        <outlet property="tableView" destination="5sy-bw-ceI" id="3uL-SS-2JN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="exY-Sj-yRa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

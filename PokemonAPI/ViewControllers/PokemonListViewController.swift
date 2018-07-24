@@ -9,19 +9,36 @@
 import UIKit
 
 class PokemonListViewController: UIViewController {
-
+    
+    //MARK: - GUI
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var logoutBarButtonItem: UIBarButtonItem!
+    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.setup()
     }
     
-
+    //MARK: - Helper
+    
+    private func setup() {
+        self.setupTableView()
+    }
+    
+    private func setupTableView() {
+        
+        
+        
+    }
+    
+    //MARK: - Actions
+    
+    @IBAction func logoutBarButtonAction(_ sender: UIBarButtonItem) {
+    }
+    
     /*
     // MARK: - Navigation
 
