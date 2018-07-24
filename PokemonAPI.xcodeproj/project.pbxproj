@@ -13,6 +13,7 @@
 		A38C0F6E2106C7D40041E104 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38C0F6C2106C7D40041E104 /* Main.storyboard */; };
 		A38C0F702106C7D70041E104 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A38C0F6F2106C7D70041E104 /* Assets.xcassets */; };
 		A38C0F732106C7D70041E104 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38C0F712106C7D70041E104 /* LaunchScreen.storyboard */; };
+		A38C0F7B2106C8A20041E104 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38C0F7A2106C8A20041E104 /* API.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A38C0F6F2106C7D70041E104 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A38C0F722106C7D70041E104 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A38C0F742106C7D70041E104 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A38C0F7A2106C8A20041E104 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		CBBA17589BA657DA8D8FFF43 /* Pods-PokemonAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-PokemonAPI/Pods-PokemonAPI.release.xcconfig"; sourceTree = "<group>"; };
 		EDF7C69B85AABFE9BB233346 /* Pods_PokemonAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -75,6 +77,7 @@
 				A38C0F6F2106C7D70041E104 /* Assets.xcassets */,
 				A38C0F712106C7D70041E104 /* LaunchScreen.storyboard */,
 				A38C0F742106C7D70041E104 /* Info.plist */,
+				A38C0F7A2106C8A20041E104 /* API.swift */,
 			);
 			path = PokemonAPI;
 			sourceTree = "<group>";
@@ -183,12 +186,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -221,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A38C0F6B2106C7D40041E104 /* ViewController.swift in Sources */,
+				A38C0F7B2106C8A20041E104 /* API.swift in Sources */,
 				A38C0F692106C7D40041E104 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
