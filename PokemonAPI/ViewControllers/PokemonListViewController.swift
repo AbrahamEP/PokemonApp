@@ -15,6 +15,10 @@ class PokemonListViewController: UIViewController {
     
     @IBOutlet weak var logoutBarButtonItem: UIBarButtonItem!
     
+    //MARK: - Variables
+    
+    var pokemonDataSource: PokemonDataSourceDelegate!
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +34,26 @@ class PokemonListViewController: UIViewController {
     
     private func setupTableView() {
         
+        self.tableView.register(UINib.init(nibName: CellNames.TableView.pokemon, bundle: nil), forCellReuseIdentifier: CellNames.TableView.pokemon)
+        self.pokemonDataSource = PokemonDataSourceDelegate()
         
+        self.tableView.rowHeight = 80
+        self.tableView.separatorStyle = .none
+        self.tableView.dataSource = self.pokemonDataSource
+        self.tableView.delegate = self.pokemonDataSource
         
+        HelpTools.showProgressHUD(in: self.view)
+        self.pokemonDataSource.loadPokemons {
+            self.tableView.reloadData()
+            HelpTools.dismissProgressHUD(in: self.view)
+        }
     }
     
     //MARK: - Actions
     
-    @IBAction func logoutBarButtonAction(_ sender: UIBarButtonItem) {
+    @IBAction func logoutBarButtonAction(_ sender: UIBarButtonItem)
+    {
+        
     }
     
     /*
