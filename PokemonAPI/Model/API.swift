@@ -21,7 +21,7 @@ class API {
     
     var networking: Networking!
     
-    private let email = "aep0492@gmail.com"
+    private let email = "pokeapp@me.com"
     private let password = "123456"
     
     private init() {
