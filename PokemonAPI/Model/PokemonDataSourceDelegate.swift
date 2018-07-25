@@ -81,6 +81,9 @@ class PokemonDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDel
         return self.pokemons.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         

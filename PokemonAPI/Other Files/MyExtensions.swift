@@ -31,7 +31,6 @@ extension UIViewController{
     
     func transitionToMain() {
         
-        guard let window = self.view.window else {return}
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = storyboard.instantiateViewController(withIdentifier: "PokemonListViewController")
         self.present(mainVC, animated: true, completion: nil)
@@ -39,7 +38,6 @@ extension UIViewController{
     
     func transitionToLogin() {
         
-        guard let window = self.view.window else {return}
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
         self.present(loginVC, animated: true, completion: nil)
@@ -384,7 +382,7 @@ extension UIView {
         
     }
     
-    func applyShadow(width: Int = 3, height: Int = 3, color: UIColor = UIColor.lightGray) {
+    func applyShadow(width: Int = 1, height: Int = 1, color: UIColor = UIColor.lightGray) {
         
         //Adds a shadow to sampleView
         
