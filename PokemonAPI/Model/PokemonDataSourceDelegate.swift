@@ -21,6 +21,15 @@ class PokemonDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDel
         API.shared.getPokemonList { (tempPokemons, json, response) in
             
             guard let currentPokems = tempPokemons, let currentJson = json else {
+                
+                guard let savedPokemons = API.shared.getSavedPokemons() else {
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                    return
+                }
+                self.pokemons = savedPokemons
+                
                 DispatchQueue.main.async {
                     completion()
                 }

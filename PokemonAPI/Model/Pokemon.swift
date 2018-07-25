@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct Pokemon {
+struct Pokemon: Codable {
     var name: String
     var url: String
     var id: Int{

@@ -21,6 +21,9 @@ class API {
     
     var networking: Networking!
     
+    private let email = "aep0492@gmail.com"
+    private let password = "123456"
+    
     private init() {
         self.networking = Networking()
     }
@@ -43,6 +46,10 @@ class API {
                 pokemons.append(newPokemon)
             })
             
+            if self.getSavedPokemons() == nil {
+                self.savePokemons(pokemons)
+            }
+            
             DispatchQueue.main.async {
                 completion(pokemons, json, response)
             }
@@ -51,8 +58,42 @@ class API {
         
     }
     
-    func login(username: String, password: String, completion: @escaping () -> Void) {
+    func savePokemons(_ pokemons: [Pokemon]) {
+        do {
+            let pokemonsData = try JSONEncoder().encode(pokemons)
+            UserDefaults.standard.set(pokemonsData, forKey: "pokemons")
+        } catch {
+            print("Error al guardar pokemons")
+        }
+    }
+    
+    func getSavedPokemons() -> [Pokemon]? {
+        guard let data = UserDefaults.standard.data(forKey: "pokemons") else {
+            return nil
+        }
         
+        do {
+            let pokemons = try JSONDecoder().decode([Pokemon].self, from: data)
+            return pokemons
+        } catch {
+            return nil
+        }
+    }
+    
+    func login(email: String, password: String, completion: @escaping (_ response: NetworkResponse) -> Void) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            
+            guard email == self.email && password == self.password else {
+                
+                let response = NetworkResponse(success: false, errorMessage: ErrorMessage.init(title: "Credenciales incorrectas", message: "Por favor, verifica tu email o contraseña"), code: -1)
+                completion(response)
+                return
+            }
+            
+            let response = NetworkResponse(success: true, errorMessage: nil, code: 200)
+            completion(response)
+        }
         
         
     }

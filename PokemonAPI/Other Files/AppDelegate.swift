@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +16,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        IQKeyboardManager.shared.enable = true
+        
+        if HelpTools.isUserLogin() {
+            
+            self.transitionToMain()
+        }else{
+            self.transitionToLogin()
+        }
+        
         return true
+    }
+    
+    func transitionToLogin(animationOption: UIViewAnimationOptions? = .transitionFlipFromLeft) {
+        
+        if let window = window {
+            UIView.transition(with: window, duration: 0.3, options: animationOption ?? [], animations: {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                window.rootViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            }, completion: nil)
+        }
+    }
+    
+    func transitionToMain(animationOption: UIViewAnimationOptions? = .transitionFlipFromLeft) {
+        
+        if let window = window {
+            UIView.transition(with: window, duration: 0.3, options: animationOption ?? [], animations: {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                window.rootViewController = storyboard.instantiateViewController(withIdentifier: "PokemonListViewController")
+            }, completion: nil)
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

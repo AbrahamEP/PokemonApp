@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ytx-9s-TmV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,17 +12,59 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="PokemonAPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="PokemonAPI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tcc-eF-hnn">
+                                <rect key="frame" x="16" y="318" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bhs-GZ-u94">
+                                <rect key="frame" x="16" y="368" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fma-aS-jWh">
+                                <rect key="frame" x="142" y="418" width="90" height="30"/>
+                                <state key="normal" title="Iniciar sesión"/>
+                                <connections>
+                                    <action selector="loginButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aur-4Q-9Ls"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PokemonImage" translatesAutoresizingMaskIntoConstraints="NO" id="dC2-gF-mZD">
+                                <rect key="frame" x="16" y="80" width="343" height="213"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fma-aS-jWh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8mT-qd-OWY"/>
+                            <constraint firstItem="bhs-GZ-u94" firstAttribute="top" secondItem="Tcc-eF-hnn" secondAttribute="bottom" constant="20" id="DGf-wh-9k3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Tcc-eF-hnn" secondAttribute="trailing" constant="16" id="Sfi-bD-f52"/>
+                            <constraint firstItem="fma-aS-jWh" firstAttribute="top" secondItem="bhs-GZ-u94" secondAttribute="bottom" constant="20" id="Tps-tN-kr7"/>
+                            <constraint firstItem="bhs-GZ-u94" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Zmt-1h-Fha"/>
+                            <constraint firstItem="dC2-gF-mZD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="aZC-tm-bYd"/>
+                            <constraint firstItem="Tcc-eF-hnn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="alB-V6-2K6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bhs-GZ-u94" secondAttribute="trailing" constant="16" id="flX-fQ-tWS"/>
+                            <constraint firstItem="Tcc-eF-hnn" firstAttribute="top" secondItem="dC2-gF-mZD" secondAttribute="bottom" constant="25" id="mZ0-Cq-oYW"/>
+                            <constraint firstItem="Tcc-eF-hnn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wyQ-KC-DL3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dC2-gF-mZD" secondAttribute="trailing" constant="16" id="xzq-P0-cuC"/>
+                            <constraint firstItem="dC2-gF-mZD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="zTm-Fq-aaq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="Tcc-eF-hnn" id="dDb-sr-X37"/>
+                        <outlet property="passwordTextField" destination="bhs-GZ-u94" id="P0r-OY-pyh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="374" y="134"/>
+            <point key="canvasLocation" x="373.60000000000002" y="133.5832083958021"/>
         </scene>
         <!--Pokemon List View Controller-->
         <scene sceneID="XK2-hU-JrU">
@@ -65,7 +107,7 @@
         <!--Navigation Controller-->
         <scene sceneID="4dI-23-9Uw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ytx-9s-TmV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PokemonListViewController" automaticallyAdjustsScrollViewInsets="NO" id="Ytx-9s-TmV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P3e-QH-4TK">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -83,5 +125,6 @@
     </scenes>
     <resources>
         <image name="LogoutIcon" width="32" height="32"/>
+        <image name="PokemonImage" width="600" height="221"/>
     </resources>
 </document>

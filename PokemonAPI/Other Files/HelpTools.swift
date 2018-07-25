@@ -11,21 +11,16 @@ import MBProgressHUD
 
 class HelpTools {
     
-    
-    //MARK: - Other tools
-    
-    public static func isUserLoggedIn() -> Bool {
-        
-        return UserDefaults.standard.bool(forKey: "login")
-    }
-    
     public static func setLogin() {
-        
         UserDefaults.standard.set(true, forKey: "login")
     }
     
     public static func logout() {
         UserDefaults.standard.removeObject(forKey: "login")
+    }
+    
+    public static func isUserLogin() -> Bool {
+        return UserDefaults.standard.bool(forKey: "login")
     }
     
     public static func isValidEmailAddress(emailAddressString: String) -> Bool {
@@ -219,6 +214,32 @@ class HelpTools {
         }
     }
     
+    public static func transitionToLogin() {
+        guard let window = UIApplication.shared.windows.last else {return}
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let main = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        guard let mainvc = window.rootViewController, mainvc != main else {return}
+        UIView.transition(with: window, duration: 0.3, options: UIViewAnimationOptions.transitionFlipFromLeft, animations: {
+            
+            window.rootViewController = main
+            
+        }) { _ in
+            
+        }
+    }
     
+    public static func transitionToMain() {
+        guard let window = UIApplication.shared.windows.last else {return}
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let main = storyboard.instantiateViewController(withIdentifier: "PokemonListViewController")
+        guard let mainvc = window.rootViewController, mainvc != main else {return}
+        UIView.transition(with: window, duration: 0.3, options: UIViewAnimationOptions.transitionFlipFromLeft, animations: {
+            
+            window.rootViewController = main
+            
+        }) { _ in
+            
+        }
+    }
     
 }

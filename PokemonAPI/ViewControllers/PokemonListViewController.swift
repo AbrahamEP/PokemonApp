@@ -29,7 +29,13 @@ class PokemonListViewController: UIViewController {
     //MARK: - Helper
     
     private func setup() {
+        self.title = "Pokémon"
         self.setupTableView()
+        self.setupLogouBarButton()
+    }
+    
+    private func setupLogouBarButton() {
+        self.logoutBarButtonItem.tintColor = UIColor.red
     }
     
     private func setupTableView() {
@@ -53,6 +59,12 @@ class PokemonListViewController: UIViewController {
     
     @IBAction func logoutBarButtonAction(_ sender: UIBarButtonItem)
     {
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "Aceptar", style: .default) { (_) in
+            HelpTools.logout()
+            self.transitionToLogin()
+        }
+        self.createAlertView("¿Seguro que desea cerrar sesión?", nil, type: .alert, actions: cancelAction, okAction)
         
     }
     

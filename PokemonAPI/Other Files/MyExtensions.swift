@@ -29,6 +29,22 @@ extension UIViewController{
         UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
+    func transitionToMain() {
+        
+        guard let window = self.view.window else {return}
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = storyboard.instantiateViewController(withIdentifier: "PokemonListViewController")
+        self.present(mainVC, animated: true, completion: nil)
+    }
+    
+    func transitionToLogin() {
+        
+        guard let window = self.view.window else {return}
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        self.present(loginVC, animated: true, completion: nil)
+        
+    }
     
     /**
      Function for setting the back button item of a navigation bar, to blank.
@@ -77,7 +93,7 @@ extension UIViewController{
      - Parameter type: The UIAlertControllerStyle of the AlertController. The default is .alert
      - Parameter actions: An array of the actions that the alert is going to have. The default value is an action with title "Aceptar" and no closure.
      */
-    func createAlertView(_ title: String? = "Dypaq", _ message: String? = nil, type : UIAlertControllerStyle = .alert ,actions: [UIAlertAction] = [UIAlertAction.init(title: "Aceptar", style: .default, handler: nil)]) {
+    func createAlertView(_ title: String?, _ message: String? = nil, type : UIAlertControllerStyle = .alert ,actions: UIAlertAction...) {
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: type)
         actions.forEach { (action) in
             alert.addAction(action)
