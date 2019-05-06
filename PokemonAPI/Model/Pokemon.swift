@@ -26,7 +26,7 @@ struct Pokemon: Codable {
     
     var imageUrl: String {
         get{
-            return "http://pokeapi.co/media/sprites/pokemon/\(self.id).png"
+            return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(self.id).png"
         }
     }
     
