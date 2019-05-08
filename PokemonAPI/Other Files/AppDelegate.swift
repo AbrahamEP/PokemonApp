@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         IQKeyboardManager.shared.enable = true
+        DCAPIManager.shared.host = "http://pokeapi.co/"
+        DCAPIManager.shared.apiVersion = "api/v2/"
+        DCAPIManager.shared.enableDebug = true
         
         if HelpTools.isUserLogin() {
             

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9592557A74F50DB9865F4734 /* Pods_PokemonAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF7C69B85AABFE9BB233346 /* Pods_PokemonAPI.framework */; };
 		A33BED382281E15500DB2203 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33BED372281E15500DB2203 /* APIManager.swift */; };
+		A33BED3A2281EF9F00DB2203 /* PokemonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33BED392281EF9F00DB2203 /* PokemonHelper.swift */; };
+		A33BED3F2281F5DE00DB2203 /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33BED3E2281F5DE00DB2203 /* LoginAPI.swift */; };
 		A36B75D42106E9EE00DE4EC6 /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B75D22106E9EE00DE4EC6 /* PokemonTableViewCell.swift */; };
 		A36B75D52106E9EE00DE4EC6 /* PokemonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36B75D32106E9EE00DE4EC6 /* PokemonTableViewCell.xib */; };
 		A36B75D82106EAFC00DE4EC6 /* MyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B75D72106EAFC00DE4EC6 /* MyExtensions.swift */; };
@@ -32,6 +34,8 @@
 /* Begin PBXFileReference section */
 		1F2EFB21558E46A5D42A82DB /* Pods-PokemonAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PokemonAPI/Pods-PokemonAPI.debug.xcconfig"; sourceTree = "<group>"; };
 		A33BED372281E15500DB2203 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		A33BED392281EF9F00DB2203 /* PokemonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonHelper.swift; sourceTree = "<group>"; };
+		A33BED3E2281F5DE00DB2203 /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
 		A36B75D22106E9EE00DE4EC6 /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
 		A36B75D32106E9EE00DE4EC6 /* PokemonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonTableViewCell.xib; sourceTree = "<group>"; };
 		A36B75D72106EAFC00DE4EC6 /* MyExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyExtensions.swift; sourceTree = "<group>"; };
@@ -76,6 +80,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A33BED3B2281F57000DB2203 /* Pokemon */ = {
+			isa = PBXGroup;
+			children = (
+				A38C0F812106DBB90041E104 /* Pokemon.swift */,
+				A3CC24662280A41C00A5760F /* PokemonAPI.swift */,
+			);
+			path = Pokemon;
+			sourceTree = "<group>";
+		};
+		A33BED3C2281F59900DB2203 /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				A33BED372281E15500DB2203 /* APIManager.swift */,
+			);
+			path = APIManager;
+			sourceTree = "<group>";
+		};
+		A33BED3D2281F5BA00DB2203 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A33BED3E2281F5DE00DB2203 /* LoginAPI.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		A36B75D62106E9F700DE4EC6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +135,8 @@
 		A38C0F672106C7D40041E104 /* PokemonAPI */ = {
 			isa = PBXGroup;
 			children = (
+				A3AA7A0E228322A500C7E6A0 /* Old files */,
+				A33BED3C2281F59900DB2203 /* APIManager */,
 				A36B75D62106E9F700DE4EC6 /* Views */,
 				A38C0F742106C7D70041E104 /* Info.plist */,
 				A38C0F862106E7570041E104 /* Other Files */,
@@ -120,15 +151,9 @@
 		A38C0F802106DBA50041E104 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A38C0F812106DBB90041E104 /* Pokemon.swift */,
-				A38C0F7A2106C8A20041E104 /* API.swift */,
-				A38C0F7C2106CF4D0041E104 /* NetworkResponse.swift */,
-				A38C0F7E2106D02E0041E104 /* Networking.swift */,
-				A36B75DB2106EF4900DE4EC6 /* PokemonDataSourceDelegate.swift */,
-				A36B75DD2106EFA600DE4EC6 /* CellNames.swift */,
-				A3CC24662280A41C00A5760F /* PokemonAPI.swift */,
-				A3CC24682280C45C00A5760F /* PaginationModel.swift */,
-				A33BED372281E15500DB2203 /* APIManager.swift */,
+				A3AA7A0F228322BB00C7E6A0 /* Pagination */,
+				A33BED3D2281F5BA00DB2203 /* Login */,
+				A33BED3B2281F57000DB2203 /* Pokemon */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -157,8 +182,29 @@
 				A36B75D92106EC6300DE4EC6 /* HelpTools.swift */,
 				A36B75D72106EAFC00DE4EC6 /* MyExtensions.swift */,
 				A38C0F682106C7D40041E104 /* AppDelegate.swift */,
+				A33BED392281EF9F00DB2203 /* PokemonHelper.swift */,
+				A36B75DD2106EFA600DE4EC6 /* CellNames.swift */,
 			);
 			path = "Other Files";
+			sourceTree = "<group>";
+		};
+		A3AA7A0E228322A500C7E6A0 /* Old files */ = {
+			isa = PBXGroup;
+			children = (
+				A38C0F7A2106C8A20041E104 /* API.swift */,
+				A38C0F7C2106CF4D0041E104 /* NetworkResponse.swift */,
+				A38C0F7E2106D02E0041E104 /* Networking.swift */,
+				A36B75DB2106EF4900DE4EC6 /* PokemonDataSourceDelegate.swift */,
+			);
+			path = "Old files";
+			sourceTree = "<group>";
+		};
+		A3AA7A0F228322BB00C7E6A0 /* Pagination */ = {
+			isa = PBXGroup;
+			children = (
+				A3CC24682280C45C00A5760F /* PaginationModel.swift */,
+			);
+			path = Pagination;
 			sourceTree = "<group>";
 		};
 		F08112DE5F73FCC15F3BE466 /* Pods */ = {
@@ -309,11 +355,13 @@
 			files = (
 				A38C0F882106E7790041E104 /* LoginViewController.swift in Sources */,
 				A3CC24692280C45C00A5760F /* PaginationModel.swift in Sources */,
+				A33BED3F2281F5DE00DB2203 /* LoginAPI.swift in Sources */,
 				A36B75D42106E9EE00DE4EC6 /* PokemonTableViewCell.swift in Sources */,
 				A36B75DE2106EFA600DE4EC6 /* CellNames.swift in Sources */,
 				A38C0F7F2106D02E0041E104 /* Networking.swift in Sources */,
 				A38C0F7D2106CF4D0041E104 /* NetworkResponse.swift in Sources */,
 				A38C0F8A2106E78B0041E104 /* PokemonListViewController.swift in Sources */,
+				A33BED3A2281EF9F00DB2203 /* PokemonHelper.swift in Sources */,
 				A38C0F7B2106C8A20041E104 /* API.swift in Sources */,
 				A36B75D82106EAFC00DE4EC6 /* MyExtensions.swift in Sources */,
 				A38C0F692106C7D40041E104 /* AppDelegate.swift in Sources */,

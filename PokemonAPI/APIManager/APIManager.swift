@@ -16,7 +16,7 @@ public protocol APIConfiguration: URLRequestConvertible {
     var parameters: Parameters? {get}
 }
 
-public struct DCResponseError: Codable {
+public struct ResponseError: Codable {
     public var code: Int
     public var message: String
     public var statusCode: Int?
@@ -25,6 +25,22 @@ public struct DCResponseError: Codable {
         self.code = code
         self.message = message
         self.statusCode = statusCode
+    }
+}
+
+public struct MultipartModel {
+    public var fileExtension: String
+    public var key: String
+    public var fileName: String
+    public var mimeType: String
+    public var data: Data
+    
+    public init(key: String, fileName: String, mimeType: String, data: Data, fileExtension: String) {
+        self.key = key
+        self.fileName = fileName
+        self.mimeType = mimeType
+        self.data = data
+        self.fileExtension = fileExtension
     }
 }
 
@@ -37,7 +53,7 @@ public class DCAPIManager {
     
     private init() {}
     
-    public func request<T: Codable>(urlRequest: URLRequestConvertible, completion: @escaping (DCResponseError?, T?) -> Void) {
+    public func request<T: Codable>(urlRequest: URLRequestConvertible, completion: @escaping (ResponseError?, T?) -> Void) {
         guard let urlRequest = urlRequest.urlRequest else { return }
         sessionManager.request(urlRequest)
             .validate()
@@ -70,9 +86,9 @@ public class DCAPIManager {
                                 print("JSON decode error: \(error)")
                             }
                             #endif
-                            var error: DCResponseError? = nil
+                            var error: ResponseError? = nil
                             if statusCode != 204 {
-                                error = DCResponseError(code: statusCode, message: "No se pudo decodificar el JSON.", statusCode: statusCode)
+                                error = ResponseError(code: statusCode, message: "No se pudo decodificar el JSON.", statusCode: statusCode)
                             }
                             completion(error, nil)
                         }
@@ -83,7 +99,7 @@ public class DCAPIManager {
                 case .failure(let error):
                     if let data = response.data {
                         do {
-                            var error = try JSONDecoder().decode(DCResponseError.self, from: data)
+                            var error = try JSONDecoder().decode(ResponseError.self, from: data)
                             error.statusCode = statusCode
                             completion(error, nil)
                         } catch {
@@ -92,21 +108,21 @@ public class DCAPIManager {
                                 print("JSON decode error: \(error)")
                             }
                             #endif
-                            let error = DCResponseError(code: statusCode, message: "No se pudo decodificar JSON de error.", statusCode: statusCode)
+                            let error = ResponseError(code: statusCode, message: "No se pudo decodificar JSON de error.", statusCode: statusCode)
                             completion(error, nil)
                         }
                     } else {
                         let urlError = error as! URLError
                         if !self.validateConnection(urlError) {
-                            let error = DCResponseError(code: urlError.errorCode, message: "No se pudo completar la petición, verifica tu conexión a internet y vuelve a intentar.", statusCode: statusCode)
+                            let error = ResponseError(code: urlError.errorCode, message: "No se pudo completar la petición, verifica tu conexión a internet y vuelve a intentar.", statusCode: statusCode)
                             completion(error, nil)
                         } else {
                             switch statusCode {
                             case 500...599: // Server error
-                                let error = DCResponseError(code: statusCode, message: "Por el momento no podemos completar la solicitud, intenta más tarde.", statusCode: statusCode)
+                                let error = ResponseError(code: statusCode, message: "Por el momento no podemos completar la solicitud, intenta más tarde.", statusCode: statusCode)
                                 completion(error, nil)
                             default:
-                                let error = DCResponseError(code: urlError.errorCode, message: "Ocurrió un error con la peticion.", statusCode: statusCode)
+                                let error = ResponseError(code: urlError.errorCode, message: "Ocurrió un error con la peticion.", statusCode: statusCode)
                                 completion(error, nil)
                             }
                         }
@@ -115,7 +131,7 @@ public class DCAPIManager {
         }
     }
     
-    public func upload<T: Codable>(urlRequest: URLRequestConvertible, parameters: Parameters?, multipartForms: [DCMultipartModel], completion: @escaping (DCResponseError?, T?)->Void) {
+    public func upload<T: Codable>(urlRequest: URLRequestConvertible, parameters: Parameters?, multipartForms: [MultipartModel], completion: @escaping (ResponseError?, T?)->Void) {
         
         sessionManager.upload(multipartFormData: { (multipart) in
             
@@ -169,7 +185,7 @@ public class DCAPIManager {
                                 }
                                 #endif
                                 
-                                let _ = DCResponseError(code: statusCode, message: "No se pudo decodificar el JSON.", statusCode: statusCode)
+                                let _ = ResponseError(code: statusCode, message: "No se pudo decodificar el JSON.", statusCode: statusCode)
                                 completion(nil, nil)
                             }
                         } else {
@@ -181,7 +197,7 @@ public class DCAPIManager {
                         if let data = response.data {
                             
                             do {
-                                var error = try JSONDecoder().decode(DCResponseError.self, from: data)
+                                var error = try JSONDecoder().decode(ResponseError.self, from: data)
                                 error.statusCode = statusCode
                                 completion(error, nil)
                             } catch {
@@ -190,21 +206,21 @@ public class DCAPIManager {
                                     print("JSON decode error: \(error)")
                                 }
                                 #endif
-                                let error = DCResponseError(code: statusCode, message: "No se pudo decodificar JSON de error.", statusCode: statusCode)
+                                let error = ResponseError(code: statusCode, message: "No se pudo decodificar JSON de error.", statusCode: statusCode)
                                 completion(error, nil)
                             }
                         } else {
                             let urlError = error as! URLError
                             if !self.validateConnection(urlError) {
-                                let error = DCResponseError(code: urlError.errorCode, message: "No se pudo completar la petición, verifica tu conexión a internet y vuelve a intentar.", statusCode: statusCode)
+                                let error = ResponseError(code: urlError.errorCode, message: "No se pudo completar la petición, verifica tu conexión a internet y vuelve a intentar.", statusCode: statusCode)
                                 completion(error, nil)
                             } else {
                                 switch statusCode {
                                 case 500...599: // Server error
-                                    let error = DCResponseError(code: statusCode, message: "Por el momento no podemos completar la solicitud, intenta más tarde.", statusCode: statusCode)
+                                    let error = ResponseError(code: statusCode, message: "Por el momento no podemos completar la solicitud, intenta más tarde.", statusCode: statusCode)
                                     completion(error, nil)
                                 default:
-                                    let error = DCResponseError(code: urlError.errorCode, message: "Ocurrió un error con la peticion.", statusCode: statusCode)
+                                    let error = ResponseError(code: urlError.errorCode, message: "Ocurrió un error con la peticion.", statusCode: statusCode)
                                     completion(error, nil)
                                 }
                             }
@@ -218,7 +234,7 @@ public class DCAPIManager {
                 #if DEBUG
                 print(error)
                 #endif
-                let error = DCResponseError(code: 400, message: "Ocurrió un error al codificar los archivos", statusCode: 400)
+                let error = ResponseError(code: 400, message: "Ocurrió un error al codificar los archivos", statusCode: 400)
                 completion(error, nil)
             }
             
@@ -226,7 +242,7 @@ public class DCAPIManager {
         
     }
     
-    public func upload(urlRequest: URLRequestConvertible, parameters: Parameters, fileData: Data?, fileName: String?, fileKey: String?, mimeType: String?, completion: @escaping (DCResponseError?, Data?)->Void) {
+    public func upload(urlRequest: URLRequestConvertible, parameters: Parameters, fileData: Data?, fileName: String?, fileKey: String?, mimeType: String?, completion: @escaping (ResponseError?, Data?)->Void) {
         sessionManager.upload(multipartFormData: { (multipartFormData) in
             if let fileData = fileData, let fileName = fileName, let fileKey = fileKey, let mimeType = mimeType {
                 multipartFormData.append(fileData, withName: fileKey, fileName: fileName, mimeType: mimeType)
@@ -243,7 +259,7 @@ public class DCAPIManager {
                     debugPrint(response)
                     #endif
                     guard let data = response.result.value else {
-                        let error = DCResponseError(code: (response.response?.statusCode)!, message: "Ocurrió un error", statusCode: (response.response?.statusCode)!)
+                        let error = ResponseError(code: (response.response?.statusCode)!, message: "Ocurrió un error", statusCode: (response.response?.statusCode)!)
                         completion(error, nil)
                         return
                     }
@@ -253,7 +269,7 @@ public class DCAPIManager {
                 #if DEBUG
                 print(encodingError)
                 #endif
-                let error = DCResponseError(code: 400, message: "Ocurrió un error al codificar los archivos", statusCode: 400)
+                let error = ResponseError(code: 400, message: "Ocurrió un error al codificar los archivos", statusCode: 400)
                 completion(error, nil)
             }
         }

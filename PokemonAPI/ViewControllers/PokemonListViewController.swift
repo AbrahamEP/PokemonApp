@@ -17,7 +17,9 @@ class PokemonListViewController: UIViewController {
     
     //MARK: - Variables
     
-    var pokemonDataSource: PokemonDataSourceDelegate!
+    
+    var pokemonsPagination: Pagination<Pokemon>! = Pagination<Pokemon>()
+    var pokemons: [Pokemon] = []
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -41,17 +43,22 @@ class PokemonListViewController: UIViewController {
     private func setupTableView() {
         
         self.tableView.register(UINib.init(nibName: CellNames.TableView.pokemon, bundle: nil), forCellReuseIdentifier: CellNames.TableView.pokemon)
-        self.pokemonDataSource = PokemonDataSourceDelegate()
         
         self.tableView.rowHeight = 80
         self.tableView.separatorStyle = .none
-        self.tableView.dataSource = self.pokemonDataSource
-        self.tableView.delegate = self.pokemonDataSource
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         HelpTools.showProgressHUD(in: self.view)
-        self.pokemonDataSource.loadPokemons {
-            self.tableView.reloadData()
+        PokemonAPI.getPokemons { [weak self] (err, pagedPokemons) in
+            guard let self = self else {return}
             HelpTools.dismissProgressHUD(in: self.view)
+            guard let pagedPokemons = pagedPokemons else {
+                return
+            }
+            self.pokemonsPagination = pagedPokemons
+            self.pokemons = self.pokemons + pagedPokemons.results
+            self.tableView.reloadData()
         }
     }
     
@@ -65,7 +72,6 @@ class PokemonListViewController: UIViewController {
             self.transitionToLogin()
         }
         self.createAlertView("¿Seguro que desea cerrar sesión?", nil, type: .alert, actions: cancelAction, okAction)
-        
     }
     
     /*
@@ -78,4 +84,37 @@ class PokemonListViewController: UIViewController {
     }
     */
 
+}
+
+extension PokemonListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return pokemons.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.TableView.pokemon, for: indexPath) as! PokemonTableViewCell
+        
+        let pokemon = self.pokemons[indexPath.row]
+        cell.pokemon = pokemon
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == self.pokemons.count - 1 {
+            PokemonAPI.getPokemons(offset: self.pokemons.count) { (err, pagedPokemons) in
+                guard let pagedPokemons = pagedPokemons else {
+                    return
+                }
+                self.pokemonsPagination = pagedPokemons
+                self.pokemons = self.pokemons + pagedPokemons.results
+                self.tableView.reloadData()
+            }
+        }
+    }
 }

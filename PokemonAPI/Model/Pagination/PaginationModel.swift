@@ -9,7 +9,7 @@
 import Foundation
 
 struct PaginationModel: Codable {
-    var count: Int
+    var count: Int = 0
     var next: String?
     var previous: String?
     
@@ -18,10 +18,11 @@ struct PaginationModel: Codable {
 
 struct Pagination<T: Codable>: Codable {
     var results: [T]
-    var pagination: PaginationModel
+    var count: Int = 0
+    var next: String?
+    var previous: String?
     
     init() {
         results = []
-        pagination = PaginationModel()
     }
 }

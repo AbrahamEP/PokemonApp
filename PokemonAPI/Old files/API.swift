@@ -42,8 +42,9 @@ class API {
             let resultsJson = currentJson["results"].arrayValue
             var pokemons: [Pokemon] = []
             resultsJson.forEach({ (pokemonJson) in
-                let newPokemon = Pokemon(json: pokemonJson)
-                pokemons.append(newPokemon)
+                
+//                let newPokemon = Pokemon(json: pokemonJson)
+//                pokemons.append(newPokemon)
             })
             
             if self.getSavedPokemons() == nil {

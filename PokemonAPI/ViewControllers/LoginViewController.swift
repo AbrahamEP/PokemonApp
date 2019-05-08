@@ -25,28 +25,22 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonAction(_ sender: UIButton)
     {
         guard let email = self.emailTextField.text, let pass = self.passwordTextField.text, !HelpTools.areThereEmptyFields(fields: email, pass) else {
-            
             self.showAlertOneButtonWith(alertTitle: "Campos vacíos", alertMessage: "Por favor, llena todos los campos", buttonTitle: "Aceptar")
             return
         }
         
         //Hacer login
         HelpTools.showProgressHUD(in: self.view)
-        API.shared.login(email: email, password: pass) { (response) in
-            
+        LoginAPI.login(email: email, password: pass) { (err) in
             HelpTools.dismissProgressHUD(in: self.view)
-            if response.success {
-                
+            if err == nil {
                 HelpTools.setLogin()
                 self.transitionToMain()
-                
-            }else{
-                
-                self.showAlertOneButtonWith(alertTitle: response.errorMessage!.title, alertMessage: response.errorMessage!.message, buttonTitle: "Aceptar")
-                
+            }else {
+                self.showAlertOneButtonWith(alertTitle: "Error", alertMessage: err!.message, buttonTitle: "Aceptar")
             }
-            
         }
+        
         
     }
     
