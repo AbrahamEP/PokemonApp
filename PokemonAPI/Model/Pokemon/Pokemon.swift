@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 struct Pokemon: Codable {
     var name: String
@@ -34,11 +33,4 @@ struct Pokemon: Codable {
         self.name = name
         self.url = url
     }
-    
-    init(json: JSON) {
-        self.name = json["name"].stringValue
-        self.url = json["url"].stringValue
-    }
-    
-    
 }

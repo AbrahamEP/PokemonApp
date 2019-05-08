@@ -23,6 +23,7 @@ class Networking {
     
     func networkingAlamo(url: String, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?, handler: @escaping (NetworkResponse, JSON?)->Void) {
         
+        
         myAlamo.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers).responseJSON { (response) in
             
             guard let httpResponse = response.response else {
