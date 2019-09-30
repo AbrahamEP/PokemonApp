@@ -7,8 +7,8 @@ target 'PokemonAPI' do
 
   # Pods for PokemonAPI
 pod 'MBProgressHUD', '~> 1.1.0'
-pod 'Alamofire'
-pod 'IQKeyboardManagerSwift'
-pod 'SwiftyJSON'
-pod 'SDWebImage'
+pod 'Alamofire', '~> 4.7.3'
+pod 'IQKeyboardManagerSwift', '~> 6.0.4'
+pod 'SwiftyJSON', '~> 4.1.0'
+pod 'SDWebImage', '~> 4.4.1'
 end
