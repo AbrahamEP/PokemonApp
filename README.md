@@ -1,6 +1,8 @@
 # Pokemon App
 
-App that displays a list of pokemon from pokeapi.co
+App that displays a list of pokemon from pokeapi.co.
+
+The app loads the pokemon from pokeapi.co and saves them to local storage whilst user scrolls. If there's no internet connection the app displays only the saved pokemon from local storage.
 
 ## Getting Started
 
@@ -19,7 +21,7 @@ password: 123456
 
 ## Authors
 
-Myself
+Abraham Escamilla Pinelo
 
 
 
